@@ -3,15 +3,15 @@
     // UMD wrapper
     if (typeof define === 'function' && define.amd) {
         // AMD
-        define(['svg.core'], factory);
+        define(['svg.core'],['svg.parser'], factory);
     } else if (typeof exports !== 'undefined') {
         // Node/CommonJS
-        module.exports = factory(require('svg.core'));
+        module.exports = factory(require('svg.core'),require('svg.parser'));
     } else {
         // Browser globals
         factory(root.SVG);
     }
-}(this, function (SVG) {
+}(this, function (SVG, parser) {
 
   // Convert nodes to svg.js elements
   function convertNodes(nodes, context, level, store, block) {
